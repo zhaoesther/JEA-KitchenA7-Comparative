@@ -420,6 +420,11 @@ a.nav-item {
 	border-top-right-radius: 25px;
 }
 
+.card-title {
+	color:#afafaf;
+	font-size:1.5em;
+}
+
 /* FAVORITES */
 
 #clear-favorites {
