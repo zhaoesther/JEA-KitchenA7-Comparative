@@ -6,12 +6,13 @@ if (!ready) {
 }
 function loading() {
 	console.log('loading...');
-	$('#loading-icon').show();
+	$('.preloader').show();
 }
 
 $(document).ready( function() {
-    $('#loading-icon').hide();
+    $('.preloader').hide();
     ready = true;
+    console.log('loaded!');
     
     $("#panel").hide(0);
     $("#addin").click(function(){

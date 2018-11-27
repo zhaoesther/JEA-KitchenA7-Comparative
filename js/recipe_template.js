@@ -5,7 +5,7 @@ if (!ready) {
 }
 function loading() {
 	console.log('loading...');
-	$('#loading-icon').show();
+	$('.preloader').show();
 }
 
 const recipePageData = [
@@ -423,9 +423,10 @@ const recipePageData = [
 var queryParams = new URLSearchParams(window.location.search);
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
-	$('#loading-icon').hide();
-	ready = true;
-  console.log('recipe loaded');
+	$('.preloader').hide();
+    ready = true;
+    console.log('loaded!');
+  	console.log('recipe loaded');
 
 	// Show name of page at #main header bar
 	var showpagename = function() {

@@ -333,6 +333,7 @@ a.nav-item {
 	width:80%;
 	margin:auto;
 	overflow:hidden;
+	border-color: #000;
 }
 
 * {
@@ -372,6 +373,11 @@ a.nav-item {
 }
 
 /* RECIPE */
+
+.toggler {
+	background-color: #FFC010;
+	font-size: 40px;
+}
 
 .recipe-ingredient {
 	font-size: 25px;

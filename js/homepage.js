@@ -29,12 +29,11 @@ $(document).ready(function() {
     // Show when page is scrolled
     $(window).scroll(showpagename);
     
-    // Navbar Active Selection
-    var url = window.location;
-    $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
-    $('ul.nav a').filter(function() {
-          return this.href == url;
-    }).parent().addClass('active');
+    $('#logout').click(function() {
+        if (confirm("Are you sure you want to log out?")) {
+            window.location.href="./index.html";
+        }
+    });
 
     window.onclick = function(event) {
         if (event.target != document.getElementById('mainnav') && event.target !=document.getElementById('opensidebar') && event.target !=document.getElementById('closesidebar')) {

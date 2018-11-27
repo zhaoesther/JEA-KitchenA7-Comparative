@@ -6,12 +6,15 @@ if (!ready) {
 }
 function loading() {
 	console.log('loading...');
-	$('#loading-icon').show();
+	$('.preloader').show();
 }
 
+var setting;
+
 $(document).ready(function() {
-    $('#loading-icon').hide();
-	ready = true;
+    $('.preloader').hide();
+    ready = true;
+    console.log('loaded!');
 
     window.onclick = function(event) {
         if (event.target != document.getElementById('mainnav') && event.target !=document.getElementById('opensidebar') && event.target !=document.getElementById('closesidebar')) {
@@ -52,63 +55,86 @@ $(document).ready(function() {
     var template = Handlebars.compile(source);
     var parentDiv = $("#recipedeposit2");
 
+    setting = JSON.parse(localStorage.getItem("setting"));
+    
     // Check if user's kitchen has any ingredients inputted
     if( listOfItems != null ) {
-            // Use a set data structure to hold the filtered recipes to be shown to the user
-            var recipesToList = new Set();
+        // Use a set data structure to hold the filtered recipes to be shown to the user
+        var recipesToList = new Set();
+
+        if (setting == 1) {                             //SETTING 1: ONLY THESE INGREDIENTS IN DISPLAYED RECIPES
+            console.log('searching for recipes containing ONLY these ingredients');
+        }
+        else if (setting == 2) {                        //SETTING 2: ALL INGREDIENTS INCLUDED
+            console.log('searching for recipes containing ALL of these ingredients');
+        }
+        else if (setting == null || setting == 0){      //SETTING null or 0: ANY INGREDIENT (DEFAULT)
+            console.log('searching for recipes containing ANY of these ingredients');
             // Loop through the user's ingredients
             for( var i = 0; i < listOfItems.length; i++ ) {
                 var theRecipe = null;
                 var currItem = listOfItems[i];
                 // Depending on which ingredient it is, look into the corresponding recipe array
                 // Since we are using a set, duplicate recipes will be ignored
+                console.log('searching for recipes containing ONLY these ingredients')
                 switch(currItem.inv) {
-                     case 'Broccoli':
-                         theRecipe = recipes_broccoli;
-                         break;
-                     case 'Chicken':
-                         theRecipe = recipes_chicken;
-                         break;
-                     case 'Egg':
-                         theRecipe = recipes_egg;
-                         break;
-                     case 'Kale':
-                         theRecipe = recipes_kale;
-                         break;
-                     case 'Salmon':
-                         theRecipe = recipes_salmon;
-                         break;
-                     case 'Spinach':
-                         theRecipe = recipes_spinach;
-                         break;
-                     case 'Tomato':
-                         theRecipe = recipes_tomato;
-                         break;
-                     default: // No ingredient entered
+                    case 'Broccoli':
+                        theRecipe = recipes_broccoli;
+                        break;
+                    case 'Chicken':
+                        theRecipe = recipes_chicken;
+                        break;
+                    case 'Egg':
+                        theRecipe = recipes_egg;
+                        break;
+                    case 'Kale':
+                        theRecipe = recipes_kale;
+                        break;
+                    case 'Salmon':
+                        theRecipe = recipes_salmon;
+                        break;
+                    case 'Spinach':
+                        theRecipe = recipes_spinach;
+                        break;
+                    case 'Tomato':
+                        theRecipe = recipes_tomato;
+                        break;
+                    default: // No ingredient entered
                         alert('No ingredients entered!');
                 }
+
                 // Add the recipe names into the tentative recipes to be shown
                 for( var k = 0; k < theRecipe.length; k++ ) {
                     recipesToList.add(theRecipe[k].name);
                 }
             }
-            // Insert recipe card into recipes.html in #recipedeposit2
-            for( let recipeName of recipesToList) {
-                for( var j = 0; j < recipes_all.length; j++ ) {
-                    var currRecipe = recipes_all[j];
-                    if( currRecipe.name === recipeName ) {
-                        var currHtml = template(currRecipe);
-                        parentDiv.append(currHtml);
-                    }
+        }
+        else
+            alert('Search settings incorrect. Please reload the page or try again later');
+            
+
+
+        
+        // Insert recipe card into recipes.html in #recipedeposit2
+        for( let recipeName of recipesToList) {
+            for( var j = 0; j < recipes_all.length; j++ ) {
+                var currRecipe = recipes_all[j];
+                if( currRecipe.name === recipeName ) {
+                    var currHtml = template(currRecipe);
+                    parentDiv.append(currHtml);
                 }
             }
-            
-        } else {
-            $("#empty-message").show();
         }
+            
+    } else {
+        $("#empty-message").show();
+    }
+
+    
+
+
 
 });
-
 
 // * Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 function openNav() {
@@ -134,7 +160,7 @@ var recipes_all = [
     {'name': 'Kale Chips', 'href':'./recipe_template.html?recipe=Kale%20Chips','img':'./images/kale-chips.jpg'},
     {'name': 'Kale Pesto', 'href':'./recipe_template.html?recipe=Kale%20Pesto','img':'./images/kale-pesto.jpg'}, 
     {'name': 'Broccoli Cheddar Soup', 'href':'./recipe_template.html?recipe=Broccoli%20Cheddar%20Soup', 'img':'./images/broccoli-cheddar.jpg'},
-    {'name': 'Mediterranean Broccoli & Cheese Omelet', 'href':'./recipe_template.html?recipe=Mediterranean%20Broccoli%20and%20Cheese%20Omelet', 'img':'./images/broccoli-cheese-omelete.jpg'},
+    {'name': 'Mediterranean Broccoli and Cheese Omelet', 'href':'./recipe_template.html?recipe=Mediterranean%20Broccoli%20and%20Cheese%20Omelet', 'img':'./images/broccoli-cheese-omelete.jpg'},
     {'name': 'Creamy Chicken and Spinach Skillet', 'href':'./recipe_template.html?recipe=Creamy%20Chicken%20and%20Spinach%20Skillet','img':'./images/chicken-spinach.jpg'},
     {'name': 'Classic Deviled Eggs', 'href':'./recipe_template.html?recipe=Classic%20Deviled%20Eggs','img':'./images/devil-eggs.jpg'},
     {'name': 'Chinese Tomato and Eggs Stir-fry', 'href':'./recipe_template.html?recipe=Chinese%20Tomato%20and%20Eggs%20Stir-fry','img':'./images/tomato-egg.jpg'},
@@ -203,36 +229,55 @@ $('#ingredientslist').on("click",'.ingredient-item',function() {
     console.log('go to kitchen...');
     window.location.href="./kitchen.html"
 
-    // console.log("click delete!");
-    // var localitemref = JSON.parse(localStorage.getItem("kitchen"));
-    // var kitchenobjects = [];
-    // if (localitemref != null) {
-    //     for (i=0; i < localitemref.length; i++) {
-    //         kitchenobjects.push(localitemref[i]);
-    //     }
-    //     for (i=0; i < kitchenobjects.length; i++) {
-    //         console.log(kitchenobjects[i]);
-    //         if (kitchenobjects[i].inv == $(this).text().trim())
-    //         {
-    //             kitchenobjects.splice(i,1);
-    //             break;
-    //         }
-    //     }
-    // }
-    // console.log($(this).text().trim());
+    console.log("click delete!");
+    var localitemref = JSON.parse(localStorage.getItem("kitchen"));
+    var kitchenobjects = [];
+    if (localitemref != null) {
+        for (i=0; i < localitemref.length; i++) {
+            kitchenobjects.push(localitemref[i]);
+        }
+        for (i=0; i < kitchenobjects.length; i++) {
+            console.log(kitchenobjects[i]);
+            if (kitchenobjects[i].inv == $(this).text().trim())
+            {
+                kitchenobjects.splice(i,1);
+                break;
+            }
+        }
+    }
+    console.log($(this).text().trim());
     
-    // // remove button from kitchen
-    // $(this).hide();
+    // remove button from kitchen
+    $(this).hide();
 
-    // if (kitchenobjects.length <1) {
-    //     kitchenobjects = null;
-    //     $('#empty-message').show();
-    //     $('#recipelist').hide();
-    //     $('#recipelist2').hide();
-    // }
+    if (kitchenobjects.length <1) {
+        kitchenobjects = null;
+        $('#empty-message').show();
+        $('#recipelist').hide();
+        $('#recipelist2').hide();
+    }
         
-    // // push data to local storage
-    // console.log(kitchenobjects);
-    // localStorage.setItem('kitchen',JSON.stringify(kitchenobjects));
+    // push data to local storage
+    console.log(kitchenobjects);
+    localStorage.setItem('kitchen',JSON.stringify(kitchenobjects));
 
-})
+});
+
+$('.toggler').on("click",'#anyBtn',function() {
+    setting = 0;
+    localStorage.setItem('setting',JSON.stringify(setting));
+    // window.location.reload();
+    console.log('any');
+});
+$('.toggler').on("click",'#onlyBtn',function() {
+    setting = 1;
+    localStorage.setItem('setting',JSON.stringify(setting));
+    // window.location.reload();
+    console.log('only');
+});
+$('.toggler').on("click",'#allBtn',function() {
+    setting = 2;
+    localStorage.setItem('setting',JSON.stringify(setting));
+    // window.location.reload();
+    console.log('all');
+});
