@@ -260,6 +260,7 @@ $('#ingredientslist').on("click",'.recipe-ingredient',function() {
     // push data to local storage
     console.log(kitchenobjects);
     localStorage.setItem('kitchen',JSON.stringify(kitchenobjects));
+    window.location.reload();
 
 });
 
