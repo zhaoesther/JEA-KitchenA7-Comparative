@@ -263,7 +263,7 @@ a.nav-item {
 	padding:5px;
 	padding-left: 30px;
 	padding-right: 30px;
-	font-size:30px;
+	font-size:35px;
 	border-radius: 20px
 }
 
@@ -271,10 +271,6 @@ a.nav-item {
 #empty-message {
 	font-size:30px;
 	padding:20px;
-}
-
-#clear-kitchen {
-	background: #ccc;
 }
 
 #icon {
@@ -298,16 +294,29 @@ a.nav-item {
 #kitchen-panel-list {
 	list-style-type: none;
 }
-
+#find-recipes-button {
+	padding: 50px;
+	margin: 50px;
+	width: 80%;
+}
 #find-recipes-button:hover {
 	background: coral;
 }
 .add-ingredient {
 	background: #ffcb3d;
 	padding:5px;
-	padding-left: 20px;
-	padding-right: 20px;
-	font-size:30px;
+	width:40%;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size:100px;
+}
+#clear-kitchen {
+	background: coral;
+	width:40%;
+}
+
+#kitchen-row {
+	width: 80%;
 }
 
 #searchform {
