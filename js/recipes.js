@@ -76,7 +76,6 @@ $(document).ready(function() {
                 var currItem = listOfItems[i];
                 // Depending on which ingredient it is, look into the corresponding recipe array
                 // Since we are using a set, duplicate recipes will be ignored
-                console.log('searching for recipes containing ONLY these ingredients')
                 switch(currItem.inv) {
                     case 'Broccoli':
                         theRecipe = recipes_broccoli;
@@ -263,21 +262,37 @@ $('#ingredientslist').on("click",'.ingredient-item',function() {
 
 });
 
-$('.toggler').on("click",'#anyBtn',function() {
+$('#anyBtn').click(function() {
+    anyBtnPush();
+});
+$('#onlyBtn').click(function() {
+    onlyBtnPush();
+});
+$('#allBtn').click(function() {
+    allBtnPush();
+});
+
+function anyBtnPush() {
+    $('.toggler').siblings().removeClass('active');
+    $('#anyBtn').addClass('active');
     setting = 0;
     localStorage.setItem('setting',JSON.stringify(setting));
     // window.location.reload();
     console.log('any');
-});
-$('.toggler').on("click",'#onlyBtn',function() {
+}
+function onlyBtnPush() {
+    $('.toggler').siblings().removeClass('active');
+    $('#onlyBtn').addClass('active');
     setting = 1;
     localStorage.setItem('setting',JSON.stringify(setting));
     // window.location.reload();
     console.log('only');
-});
-$('.toggler').on("click",'#allBtn',function() {
+}
+function allBtnPush() {
+    $('.toggler').siblings().removeClass('active');
+    $('#allBtn').addClass('active');
     setting = 2;
     localStorage.setItem('setting',JSON.stringify(setting));
     // window.location.reload();
     console.log('all');
-});
+}
