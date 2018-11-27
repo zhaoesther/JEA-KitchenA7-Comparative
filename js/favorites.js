@@ -29,6 +29,11 @@ $(document).ready(function() {
     // Show when page is scrolled
     $(window).scroll(showpagename);
     
+    $('#logout').click(function() {
+        if (confirm("Are you sure you want to log out?")) {
+            window.location.href="./index.html";
+        }
+    });
     
     var fav = JSON.parse(localStorage.getItem('favoritedrecipes'));
     if (fav) {
