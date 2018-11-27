@@ -278,7 +278,7 @@ function anyBtnPush() {
     $('#anyBtn').addClass('active');
     setting = 0;
     localStorage.setItem('setting',JSON.stringify(setting));
-    // window.location.reload();
+    window.location.reload();
     console.log('any');
 }
 function onlyBtnPush() {
@@ -286,7 +286,7 @@ function onlyBtnPush() {
     $('#onlyBtn').addClass('active');
     setting = 1;
     localStorage.setItem('setting',JSON.stringify(setting));
-    // window.location.reload();
+    window.location.reload();
     console.log('only');
 }
 function allBtnPush() {
@@ -294,6 +294,6 @@ function allBtnPush() {
     $('#allBtn').addClass('active');
     setting = 2;
     localStorage.setItem('setting',JSON.stringify(setting));
-    // window.location.reload();
+    window.location.reload();
     console.log('all');
 }
