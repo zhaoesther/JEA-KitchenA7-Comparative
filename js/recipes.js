@@ -225,8 +225,8 @@ var recipes_tomato = [
 // CHANGE TO BELOW FORMAT (REMOVE INGREDIENTS DIRECTLY)
 
 $('#ingredientslist').on("click",'.ingredient-item',function() {
-    console.log('go to kitchen...');
-    window.location.href="./kitchen.html"
+    // console.log('go to kitchen...');
+    // window.location.href="./kitchen.html"
 
     console.log("click delete!");
     var localitemref = JSON.parse(localStorage.getItem("kitchen"));
