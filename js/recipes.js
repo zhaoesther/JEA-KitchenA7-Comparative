@@ -224,7 +224,7 @@ var recipes_tomato = [
 // });
 // CHANGE TO BELOW FORMAT (REMOVE INGREDIENTS DIRECTLY)
 
-$('#ingredientslist').on("click",'.ingredient-item',function() {
+$('#ingredientslist').on("click",'.recipe-ingredient',function() {
     // console.log('go to kitchen...');
     // window.location.href="./kitchen.html"
 

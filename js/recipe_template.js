@@ -479,7 +479,9 @@ $(document).ready(function() {
     		for( let item of curData.instock ) {
     			(curData.instockArr).push(item);
     		}
-    	}
+		}
+		
+		// Add name to main bar
 		var curHtml = template(curData);
 		parentDiv.append(curHtml);
 		var curinfo = pagenametemplate(curData)
