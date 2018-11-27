@@ -267,12 +267,6 @@ a.nav-item {
 	border-radius: 20px
 }
 
-
-#empty-message {
-	font-size:30px;
-	padding:20px;
-}
-
 #icon {
 	color:red;
 	padding-left: 30%;
@@ -310,6 +304,13 @@ a.nav-item {
 	padding-right: 10px;
 	font-size:100px;
 }
+.favorite {
+	background: #ffcb3d;
+	padding:5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size:30px;
+}
 #clear-kitchen {
 	background: coral;
 	width:40%;
@@ -332,10 +333,11 @@ a.nav-item {
 
 #empty-message {
 	position:absolute;
-	padding-left:5em;
-	padding-right:5em;
+	padding-left:2em;
+	padding-right:2em;
 	bottom: 30%;
-	color: #FFC010;
+	color: coral;
+	font-size: 40px;
 }
 
 .kitchen-container {
