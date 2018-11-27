@@ -69,7 +69,7 @@ h6 {
 	z-index: 3;
 }
 #loader {
-    border: 22px solid #fff;
+    border: 22px solid rgb(243, 243, 243);
     border-top: 22px solid #fa5a62;
     border-radius: 50%;
     width: 160px;
@@ -254,6 +254,23 @@ a.nav-item {
 
 
 /* KITCHEN SPECIFIC STYLING */
+.rotate > a {
+	/* Safari */
+	-webkit-transform: rotate(-90deg);
+
+	/* Firefox */
+	-moz-transform: rotate(-90deg);
+
+	/* IE */
+	-ms-transform: rotate(-90deg);
+
+	/* Opera */
+	-o-transform: rotate(-90deg);
+
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
 .kitchen-button {
 	cursor:pointer;
 	margin-top:30px;
@@ -318,6 +335,8 @@ a.nav-item {
 
 #kitchen-row {
 	width: 80%;
+	margin-right: 0;
+	margin-left: 0;
 }
 
 #searchform {

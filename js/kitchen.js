@@ -16,10 +16,12 @@ $(document).ready( function() {
     
     $("#panel").hide(0);
     $("#addin").click(function(){
-    	$("#panel").show(500);
+        $("#panel").show(500);
+        $("#addin > a").addClass('rotate');
     });
     $("#addout").click(function(){
-    	$("#panel").hide(500);
+        $("#panel").hide(500);
+        $("#addout > a").addClass('rotate');
     });
 
     // Navbar Active Selection
