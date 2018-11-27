@@ -62,6 +62,7 @@ $(document).ready(function() {
         // Use a set data structure to hold the filtered recipes to be shown to the user
         var recipesToList = new Set();
 
+
         if (setting == 1) {                             //SETTING 1: ONLY THESE INGREDIENTS IN DISPLAYED RECIPES
             console.log('searching for recipes containing ONLY these ingredients');
         }
